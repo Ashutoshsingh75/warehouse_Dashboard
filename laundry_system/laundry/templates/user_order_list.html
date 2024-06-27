@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+{% load cart %}
+
+<div class="row">
+    <div class="container"  style="overflow-x:auto;">
+        <table id="example" class="table table table-responsive" style="width:100%">
+            <thead>
+                <tr>
+                    <th>shop id</th>
+                    <th>shop name</th>
+                    <th>Catagories</th>
+                    <th>ordertime</th>
+                    <th>amount</th>
+                    <th>status</th>
+                    <th>payment</th>
+                    <th>payment_status</th>
+                    <th>date_updated</th>
+                    <th>delevery_date</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td>{{i.shop_id}}</td>
+                    <td>{{i.shop_name}}</td>
+                    <td><table>
+                        <tr>
+                          <th>categories</th>
+                          <th>quantity</th>
+                          <th>amount</th>
+                        </tr>
+                        {% for i in i.category|to_list %}
+                        <tr>
+                            <td>{{i.0}}</td>
+                            <td>{{i.1}}</td>
+                            <td>{{i.2}}</td>
+                          </tr>
+                        {% endfor %} 
+                      </table></td>
+                    <td>{{i.order_time}}</td>
+                    <td>{{i.total_amount}}</td>
+                    <td>{{i.status}}</td>
+                    <td>{{i.payment}}</td>
+                    <td>{{i.payment_status}}</td>
+                    <td>{{i.date_updated}}</td>
+                    <td>{{i.delivery_date}}</td>
+                    {% if i.payment_status == COD %}
+                    <td><a class="btn btn-primary" href="/after_order_pay/{{i.id}}">pay now</a></td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<style>
+
+    .success{
+        background-color: rgb(34, 156, 34);
+        color:white;
+    }
+</style>
+
+<div class="container">
+    {% if messages %}
+    {% for message in messages %}
+    <h3 class="{{ message.tags }} alert">
+        {{ message }}</h3>
+    {% endfor %}
+    {% endif %}
+
+    <div class="row" style="border:2px solid black">
+        
+        
+        <h1 style="text-align:center; text-decoration: underline; color: green;">change password form</h1>
+        <div class="col-md-12" style="margin-left: 40%;">
+
+            <br>
+            <form method="POST" enctype="multipart/form-data" class="form-group">
+                <!-- csrf token -->
+                {% csrf_token %}
+
+
+                <label>enter old password</label>
+                <br>
+                <input type="password" name="old" autocomplete="current-password" required="" id="id_password">
+                <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                <br>
+                <label> enter new password</label>
+                <br>
+                <input type="password" name="new" autocomplete="current-password" required="" id="id_password">
+                <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                <br>
+                <br>
+                <button type="submit" class="btn btn-danger"> change password</button>
+
+                <!-- form submit button -->
+
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

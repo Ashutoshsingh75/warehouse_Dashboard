@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4">
+            <img src="{{shop_data.shop_img.url}}" height="200px" width="300px">
+        </div>
+        <div class="col-md-4 bg-info">
+            <h1 style="color:blue">{{shop_data.shop_name}}</h1>
+            <h4 style="color:blue">{{shop_data.shop_address}}</h4>
+        </div>
+        <div class="col-md-4">
+            <a href="/order/{{shop_data.id}}/{{shop_data.shop_name}}" class="btn" style="background-color:green; color: black;"> click for order</a>
+           
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="row">
+    <div class="container">
+        <table id="example" class="table table table-responsive" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Catagories</th>
+                    <th>price</th>
+                    <th>status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in shop_cat %}
+                <tr>
+                    <td>{{i.type}}</td>
+                    <td>{{i.price}}</td>
+                    <td>{{i.status}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+  
+    <div class="col-md-9">
+        <form method="POST" enctype="multipart/form-data">
+            <!-- csrf token -->
+            {% csrf_token %}
+            
+            <table class="table" >
+                <label for="inputState">Select payment method</label>
+
+                    <select name="select" id="inputState" class="form-control">
+                        <option selected>select....</option>
+                        <option value="ONLINE">ONLINE</option>
+                        <option value="COD">COD</option>
+                       
+                        
+                    </select>
+            </table>
+            
+            <!-- form submit button -->
+            <br>
+            <input type="submit" value='processed' class="btn btn-danger">
+        </form>
+    </div>
+    </div>
+    {% endblock %}

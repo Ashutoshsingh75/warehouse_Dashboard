@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-9">
+            <table class="table">
+                <form method="POST" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <label for="inputState">Select categories</label>
+
+                    <select name="select" id="inputState" class="form-control">
+                        {% for i in cat %}
+                        <option selected>{{i.type}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="inputState">enter quantity</label>
+                    <br>
+                    <input  name="qnt" type="text" placeholder="Enter quantity here">
+                    <br>
+                    <button class="btn btn-info" type="submit">add</button>
+                </form>
+            </table>
+
+        </div>
+
+        <div class="col-md-9">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            category
+                        </th>
+                        <th>
+                         quantity
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for cat,qunt in data.items %}
+                    <tr>
+                    <td>{{cat}}</td>
+                    <td>{{qunt}}</td>
+                    <td><a class="btn btn-danger" href="/delete/{{cat}}/{{id}}/{{username}}/">delete</a></td>
+                    <tr>
+                    {% endfor %}
+                
+                </tbody>
+            </table>
+            <a href="/order_final/{{id}}/{{username}}" class="btn btn-info">next</a>
+        </div>
+        {% endblock %}
